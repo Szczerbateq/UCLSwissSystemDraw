@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Team {
     private String teamName;
@@ -97,8 +97,16 @@ public class Team {
         return new Team(tName,tCountry,tCoefficient,tLeagueChamp,tUCLChamp,tELChamp);
     }
 
-    public static HashMap<String, Team> readTeamsFromCsv(String fileName){
-        HashMap<String, Team> countries = new HashMap<>();
+    public Country getTeamCountry(String countryName, HashMap<String, Country> countriesList){
+        return countriesList.get(countryName);
+    }
+
+    public int getTeamCountrysRanking(String countryName, HashMap<String, Country> countriesList){
+        return countriesList.get(countryName).getCountryRankingPosition();
+    }
+
+    public static ArrayList<Team> readTeamsFromCsv(String fileName){
+        ArrayList<Team> countries = new ArrayList<>();
         Path filePath = Paths.get(fileName);
 
         try (BufferedReader br = Files.newBufferedReader(filePath)){
@@ -110,7 +118,7 @@ public class Team {
                 line = line.replace(",",".");
                 String[] elements = line.split(";");
                 Team team = addTeamFromLineInFile(elements);
-                countries.put(elements[0],team);
+                countries.add(team);
                 line=br.readLine();
             }
         } catch (IOException e) {
@@ -134,10 +142,9 @@ public class Team {
 
 
     public static void main(String[] args) {
-        HashMap<String, Team> test1 = readTeamsFromCsv("resources/ClubsRanking.csv");
-        for (Map.Entry<String, Team> hm: test1.entrySet()) {
-            System.out.println(hm.getKey());
-
+        ArrayList<Team> test1 = readTeamsFromCsv("resources/ClubsRanking.csv");
+        for (Team t: test1) {
+            System.out.println(t);
         }
     }
 }

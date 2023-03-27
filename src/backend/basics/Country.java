@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Country {
     private String countryName;
@@ -84,10 +83,7 @@ public class Country {
     }
 
     public static void main(String[] args) {
-        HashMap<String, Country> test1 = readCountriesFromCsv("resources/CountriesRanking.csv");
-        for (Map.Entry<String, Country> hm: test1.entrySet()) {
-            System.out.println(hm.getKey());
+        HashMap<String, Country> countriesList = readCountriesFromCsv("resources/CountriesRanking.csv");
 
-        }
     }
 }
