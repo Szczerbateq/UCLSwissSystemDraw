@@ -1,11 +1,11 @@
-﻿FC Bayern München;Germany;135;false;false;false
+﻿FC Bayern München;Germany;135;true;false;false
 Manchester City FC;England;135;false;false;false
 Chelsea FC;England;126;false;false;false
 Liverpool FC;England;123;false;false;false
-Real Madrid CF;Spain;115;false;false;false
-Paris Saint-Germain FC;France;112;false;false;false
-Manchester United FC;England;103;false;false;false
-FC Barcelona;Spain;98;false;false;false
+Real Madrid CF;Spain;115;false;true;false
+Paris Saint-Germain FC;France;112;true;false;false
+Manchester United FC;England;103;false;false;true
+FC Barcelona;Spain;98;true;false;false
 Juventus FC;Italy;96;false;false;false
 AS Roma;Italy;89;false;false;false
 AFC Ajax;Netherlands;89;false;false;false
@@ -15,23 +15,23 @@ Club Atlético de Madrid;Spain;85;false;false;false
 RB Leipzig;Germany;84;false;false;false
 Villarreal CF;Spain;82;false;false;false
 Sevilla FC;Spain;82;false;false;false
-SL e Benfica;Portugal;81;false;false;false
+SL e Benfica;Portugal;81;true;false;false
 FC Porto;Portugal;81;false;false;false
-SSC Napoli;Italy;80;false;false;false
+SSC Napoli;Italy;80;true;false;false
 Tottenham Hotspur FC;England;80;false;false;false
 Eintracht Frankfurt;Germany;77;false;false;false
-Arsenal FC;England;76;false;false;false
+Arsenal FC;England;76;true;false;false
 TSV Bayer 04 Leverkusen;Germany;67;false;false;false
-Szachtar Donieck;Ukraine;63;false;false;false
+Szachtar Donieck;Ukraine;63;true;false;false
 Olympique Lyonnais;France;61;false;false;false
-FC Salzburg;Austria;59;false;false;false
+FC Salzburg;Austria;59;true;false;false
 Atalanta BC;Italy;55,5;false;false;false
-GNK Dinamo (Zagrzeb);Croatia;55;false;false;false
+GNK Dinamo (Zagrzeb);Croatia;55;true;false;false
 Club Brugge KV;Belgium;54;false;false;false
 Rangers FC;Scotland;54;false;false;false
-SK Slavia Praga;Czech Republic;52;false;false;false
+SK Slavia Praga;Czech Republic;52;true;false;false
 Sporting Clube de Portugal (Lizbona);Portugal;51,5;false;false;false
-Feyenoord Rotterdam;Netherlands;49;false;false;false
+Feyenoord Rotterdam;Netherlands;49;true;false;false
 FC Basel 1893;Switzerland;47;false;false;false
 AC Milan;Italy;46;false;false;false
 AZ (Alkmaar);Netherlands;44,5;false;false;false
