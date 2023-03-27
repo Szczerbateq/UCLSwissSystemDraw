@@ -1,8 +1,12 @@
 package backend.draw;
 
+import backend.basics.Country;
 import backend.basics.Team;
+import backend.comparators.TeamCoefficientComparator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 public class Pot {
     private int potNumber;
@@ -40,6 +44,41 @@ public class Pot {
     public void addTeamToPot(Team team){
         this.listOfTeamsInPot.add(team);
     }
+
+    public void setFirstPotOfTeams(ArrayList<Team> listOfTeams, HashMap<String, Country> listOfCountries){
+        TeamCoefficientComparator tcc = new TeamCoefficientComparator();
+        for (Team t1 : listOfTeams) {
+            if (listOfTeamsInPot.size()!=9){
+                if (!listOfTeamsInPot.contains(t1)) {
+                    if (t1.isUELChampion()) {
+                        listOfTeamsInPot.add(t1);
+                    }else if (t1.isUCLChampion()){
+                        listOfTeamsInPot.add(t1);
+                    }else if (t1.isCountryChampion()&&t1.getTeamCountrysRanking(t1.getTeamCountry(),listOfCountries)<=7){
+                        listOfTeamsInPot.add(t1);
+                    }
+                }
+            }
+        }
+        listOfTeamsInPot.sort(tcc);
+    }
+
+    public void setFullPotOfTeams(ArrayList<Team> listOfTeams){
+        TeamCoefficientComparator tcc = new TeamCoefficientComparator();
+        for (int i = 0 ; i < 9 ; ++i){
+            int rand = new Random().nextInt(listOfTeams.size());
+            if(listOfTeamsInPot.contains(listOfTeams.get(rand))){
+                --i;
+            }
+            else{
+                this.listOfTeamsInPot.add(listOfTeams.get(rand));
+            }
+
+        }
+        listOfTeamsInPot.sort(tcc);
+    }
+
+
 
     @Override
     public String toString() {
