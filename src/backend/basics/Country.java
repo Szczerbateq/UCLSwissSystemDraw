@@ -62,6 +62,7 @@ public class Country {
             String line = br.readLine();
 
             while (line!=null){
+                line = line.replace(",",".");
                 String[] elements = line.split(";");
                 Country country = addCountryFromLineInFile(elements);
                 countries.put(elements[0],country);
