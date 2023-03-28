@@ -17,16 +17,23 @@ public class Main {
         ArrayList<Team> teamsList = readTeamsFromCsv("resources/ClubsRanking.csv");
 
         Pot pot1 = new Pot(1);
+        Pot pot2 = new Pot(2);
+
 //        pot1.setFullPotOfTeams(teamsList);
 //        for (Team t1: pot1.getListOfTeamsInPot()) {
 //            System.out.println(t1);
 //        }
-        pot1.setFirstPotOfTeams(teamsList,countriesList);
-        for (Team t1: pot1.getListOfTeamsInPot()) {
+//        pot1.setFirstPotOfTeams(teamsList,countriesList);
+//        for (Team t1: pot1.getListOfTeamsInPot()) {
+//            System.out.println(t1);
+//        }
+        int i =1;
+        pot2.setRemainingPots(teamsList,countriesList);
+        for (Team t1: pot2.getListOfTeamsInPot()) {
+            System.out.println(i);
             System.out.println(t1);
+            i++;
         }
-
-
 
     }
 }

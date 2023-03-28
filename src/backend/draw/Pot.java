@@ -63,6 +63,30 @@ public class Pot {
         listOfTeamsInPot.sort(tcc);
     }
 
+    public void setRemainingPots(ArrayList<Team> listOfTeams, HashMap<String, Country> listOfCountries){
+        TeamCoefficientComparator tcc = new TeamCoefficientComparator();
+        Random rand = new Random();
+        int i =0;
+        while (listOfTeamsInPot.size()!=27){
+            i++;
+                int randomInt = rand.nextInt(listOfTeams.size());
+                if (!listOfTeamsInPot.contains(listOfTeams.get(randomInt))) {
+                    if (!listOfTeams.get(randomInt).isUELChampion()) {
+                        listOfTeamsInPot.add(listOfTeams.get(randomInt));
+                    }else if (!listOfTeams.get(randomInt).isUCLChampion()){
+                        listOfTeamsInPot.add(listOfTeams.get(randomInt));
+                    }else if (!listOfTeams.get(randomInt).isCountryChampion()&&listOfTeams.get(randomInt).getTeamCountrysRanking(listOfTeams.get(randomInt).getTeamCountry(),listOfCountries)>7){
+                        listOfTeamsInPot.add(listOfTeams.get(randomInt));
+                    }else{
+                        listOfTeamsInPot.add(listOfTeams.get(randomInt));
+                    }
+                }
+
+        }
+        listOfTeamsInPot.sort(tcc);
+
+    }
+
     public void setFullPotOfTeams(ArrayList<Team> listOfTeams){
         TeamCoefficientComparator tcc = new TeamCoefficientComparator();
         for (int i = 0 ; i < 9 ; ++i){
