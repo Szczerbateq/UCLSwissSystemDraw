@@ -2,6 +2,7 @@ package main;
 
 import backend.basics.Country;
 import backend.basics.Team;
+import backend.draw.FullDraw;
 import backend.draw.Pot;
 
 import java.util.ArrayList;
@@ -27,12 +28,24 @@ public class Main {
 //        for (Team t1: pot1.getListOfTeamsInPot()) {
 //            System.out.println(t1);
 //        }
-        int i =1;
-        pot2.setRemainingPots(teamsList,countriesList);
-        for (Team t1: pot2.getListOfTeamsInPot()) {
-            System.out.println(i);
-            System.out.println(t1);
-            i++;
+//        int i =1;
+//        pot2.setRemainingPots(teamsList,countriesList);
+//        for (Team t1: pot2.getListOfTeamsInPot()) {
+//            System.out.println(i);
+//            System.out.println(t1);
+//            i++;
+//        }
+
+        FullDraw fd1 = new FullDraw();
+        fd1.getFullDrawInPots(teamsList,countriesList);
+        int k = 1;
+        for (Pot p1: fd1.getListOfPotsInFullDraw()) {
+            System.out.println("Koszyk numer " + k);
+            ++k;
+            for (Team t1: p1.getListOfTeamsInPot()) {
+                System.out.println(t1);
+            }
+
         }
 
     }

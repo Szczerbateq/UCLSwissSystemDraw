@@ -70,15 +70,16 @@ public class Pot {
         while (listOfTeamsInPot.size()!=27){
             i++;
                 int randomInt = rand.nextInt(listOfTeams.size());
+                Team temp = listOfTeams.get(randomInt);
                 if (!listOfTeamsInPot.contains(listOfTeams.get(randomInt))) {
-                    if (!listOfTeams.get(randomInt).isUELChampion()) {
-                        listOfTeamsInPot.add(listOfTeams.get(randomInt));
-                    }else if (!listOfTeams.get(randomInt).isUCLChampion()){
-                        listOfTeamsInPot.add(listOfTeams.get(randomInt));
-                    }else if (!listOfTeams.get(randomInt).isCountryChampion()&&listOfTeams.get(randomInt).getTeamCountrysRanking(listOfTeams.get(randomInt).getTeamCountry(),listOfCountries)>7){
-                        listOfTeamsInPot.add(listOfTeams.get(randomInt));
+                    if (temp.isUELChampion()) {
+                        continue;
+                    }else if (temp.isUCLChampion()){
+                        continue;
+                    }else if (temp.isCountryChampion()&&temp.getTeamCountrysRanking(temp.getTeamCountry(),listOfCountries)<=7){
+                        continue;
                     }else{
-                        listOfTeamsInPot.add(listOfTeams.get(randomInt));
+                        listOfTeamsInPot.add(temp);
                     }
                 }
 
