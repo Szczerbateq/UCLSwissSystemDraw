@@ -4,11 +4,9 @@ import backend.basics.Matchday;
 import backend.basics.Matchup;
 import backend.basics.Team;
 import backend.potsDraw.FullDraw;
+import backend.potsDraw.Pot;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class OfficialDraw {
     private ArrayList<Matchday> listOfMatchdays;
@@ -64,82 +62,117 @@ public class OfficialDraw {
         }
         return null;
     }
-
-
-    public void doTheDraw(FullDraw fd1){
-        listOfMatchups = new ArrayList<>();
-        listOfMatchdays = new ArrayList<>();
-        Integer[] intArray1 = getNumbersFrom0To8InRandomOrder();
-        for(int i=0;i<6;++i) {
-            int i1 = 0;
-            Matchday matchday = new Matchday(i + 1, new ArrayList<>());
-            while (matchday.getMatchupsOnMatchday() == null || matchday.getMatchupsOnMatchday().size()!=9) {
-                for (Team t1 : fd1.getCertainPot(getRulesOfMatchdays(i)[0]).getListOfTeamsInPot()) {
-                    if (matchday.getMatchupsOnMatchday()==null){
-                        Team t2 = fd1.getCertainPot(getRulesOfMatchdays(i)[1]).getListOfTeamsInPot().get(intArray1[i1]);
-                        Matchup m1 = new Matchup(t1,t2);
-                        if (listOfMatchups.size()==0){
-                            matchday.setMatchupsOnMatchday(new ArrayList<Matchup>());
-                            matchday.addMatchupToMatchday(new Matchup(t1, t2));
-                            listOfMatchups.add(new Matchup(t1,t2));
-                        }else{
-                            for (Matchup matchup: listOfMatchups) {
-                                if (!matchup.equals(m1)){
-                                    matchday.addMatchupToMatchday(new Matchup(t1, t2));
-                                    listOfMatchups.add(new Matchup(t1,t2));
-                                    ++i1;
-                                }
-                            }
-                        }
-
-
-                    }else{
-                        Team t2 = fd1.getCertainPot(getRulesOfMatchdays(i)[1]).getListOfTeamsInPot().get(intArray1[i1]);
-                        Matchup m1 = new Matchup(t1,t2);
-                        for (Matchup matchup: listOfMatchups) {
-                            if (!matchup.equals(m1)){
-                                matchday.addMatchupToMatchday(new Matchup(t1, t2));
-                                ++i1;
-                            }
-                        }
+    static public ArrayList<Matchday> drawTwoMatchdaysBetweenTwoDifferentPots(Pot p1,Pot p2){
+        ArrayList<Matchday> matchdays = new ArrayList<>();
+        Matchday matchday1 =new Matchday(1, new ArrayList<>());
+        Matchday matchday2 =new Matchday(1, new ArrayList<>());
+        int k=10;
+        while (k!=0){
+            matchday1 =new Matchday(1, new ArrayList<>());
+            k=0;
+            int i = 10;
+            Integer[] listOfRandomValues1 = null;
+            while(i != 0 ){
+                i=0;
+                Integer[] firstRandomValues = getNumbersFrom0To8InRandomOrder();
+                Integer[] secondRandomValues = getNumbersFrom0To8InRandomOrder();
+                for (int j =0; j<9 ;++j){
+                    if(Objects.equals(firstRandomValues[j], secondRandomValues[j])){
+                        ++i;
                     }
                 }
+                listOfRandomValues1 = firstRandomValues;
             }
-            i1=0;
-            while (matchday.getMatchupsOnMatchday().size()!=18)
-            {for (Team t1 : fd1.getCertainPot(getRulesOfMatchdays(i)[2]).getListOfTeamsInPot()) {
-                if (matchday.getMatchupsOnMatchday()==null){
-                    Team t2 = fd1.getCertainPot(getRulesOfMatchdays(i)[3]).getListOfTeamsInPot().get(intArray1[i1]);
-                    Matchup m1 = new Matchup(t1,t2);
-                    if (listOfMatchups.size()==0){
-                        matchday.setMatchupsOnMatchday(new ArrayList<Matchup>());
-                        matchday.addMatchupToMatchday(new Matchup(t1, t2));
-                        listOfMatchups.add(new Matchup(t1,t2));
-                    }else{
-                        for (Matchup matchup: listOfMatchups) {
-                            if (!matchup.equals(m1)){
-                                matchday.addMatchupToMatchday(new Matchup(t1, t2));
-                                listOfMatchups.add(new Matchup(t1,t2));
-                                ++i1;
-                            }
-                        }
-                    }
-
-
-                }else{
-                    Team t2 = fd1.getCertainPot(getRulesOfMatchdays(i)[3]).getListOfTeamsInPot().get(intArray1[i1]);
-                    Matchup m1 = new Matchup(t1,t2);
-                    for (Matchup matchup: listOfMatchups) {
-                        if (!matchup.equals(m1)){
-                            matchday.addMatchupToMatchday(new Matchup(t1, t2));
-                            ++i1;
-                        }
-                    }
+            int j =0;
+            for (Team t1:p1.getListOfTeamsInPot()) {
+                Team t2 =p2.getListOfTeamsInPot().get(listOfRandomValues1[j]);
+                matchday1.addMatchupToMatchday(new Matchup(t1, t2));
+                ++j;
+            }
+            for (Matchup matchup1: matchday1.getMatchupsOnMatchday()) {
+                if (matchup1.getAwayTeam().getTeamCountry().equals(matchup1.getHomeTeam().getTeamCountry())){
+                    k++;
                 }
             }
-            }
-            listOfMatchdays.add(matchday);
         }
+        int l=10;
+        while (l!=0){
+            matchday2 =new Matchday(1, new ArrayList<>());
+            l=0;
+            int i = 10;
+            Integer[] listOfRandomValues2 = null;
+            while(i != 0 ){
+                i=0;
+                Integer[] firstRandomValues = getNumbersFrom0To8InRandomOrder();
+                Integer[] secondRandomValues = getNumbersFrom0To8InRandomOrder();
+                for (int j =0; j<9 ;++j){
+                    if(Objects.equals(firstRandomValues[j], secondRandomValues[j])){
+                        ++i;
+                    }
+                }
+                listOfRandomValues2 = secondRandomValues;
+            }
+            int j =0;
+            for (Team t1:p1.getListOfTeamsInPot()) {
+                Team t3 = p2.getListOfTeamsInPot().get(listOfRandomValues2[j]);
+                Matchup nextMatchup= new Matchup(t3,t1);
+                for (Matchup matchup1:matchday1.getMatchupsOnMatchday()){
+                    if (matchup1.equals(nextMatchup)){
+                        l++;
+                    }
+                }
+                matchday2.addMatchupToMatchday(new Matchup(t3,t1));
+                ++j;
+            }
+            for (Matchup matchup1: matchday2.getMatchupsOnMatchday()) {
+                if (matchup1.getAwayTeam().getTeamCountry().equals(matchup1.getHomeTeam().getTeamCountry())){
+                    l++;
+                }
+            }
+
+        }
+
+        matchdays.add(matchday1);
+        matchdays.add(matchday2);
+        return matchdays;
+    }
+
+    static public Matchday drawMatchupsInsideOnePot (Pot p1){
+        Matchday matchday1 = new Matchday(1,new ArrayList<>());
+        int k =10;
+        while (k !=0){
+            k=0;
+            matchday1 = new Matchday(1,new ArrayList<>());
+            int i = 10;
+            Integer[] listOfRandomValues1 = null;
+            Integer[] listOfRandomValues2 = null;
+            while(i != 0){
+                i=0;
+                Integer[] firstRandomValues = getNumbersFrom0To8InRandomOrder();
+                Integer[] secondRandomValues = getNumbersFrom0To8InRandomOrder();
+                for (int j =0; j<9 ;++j){
+                    if(Objects.equals(firstRandomValues[j], secondRandomValues[j])){
+                        ++i;
+                    }
+                }
+                listOfRandomValues1 = firstRandomValues;
+                listOfRandomValues2 = secondRandomValues;
+            }
+            for(int j =0 ; j<9;++j){
+                matchday1.addMatchupToMatchday(new Matchup(p1.getCertainTeamFromPot(listOfRandomValues1[j]+1),p1.getCertainTeamFromPot(listOfRandomValues2[j]+1)));
+            }
+            for (Matchup matchup1: matchday1.getMatchupsOnMatchday()) {
+                if (matchup1.getAwayTeam().getTeamCountry().equals(matchup1.getHomeTeam().getTeamCountry())){
+                    k++;
+                }
+            }
+        }
+
+        return matchday1;
+    }
+    public void doTheDraw(FullDraw fd1){
+
+        drawTwoMatchdaysBetweenTwoDifferentPots(fd1.getCertainPot(1),fd1.getCertainPot(2));
     }
 
 

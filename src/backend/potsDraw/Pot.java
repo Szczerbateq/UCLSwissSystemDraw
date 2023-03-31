@@ -51,14 +51,26 @@ public class Pot {
 
     public void setFirstPotOfTeams(ArrayList<Team> listOfTeams, HashMap<String, Country> listOfCountries){
         TeamCoefficientComparator tcc = new TeamCoefficientComparator();
+        int rankingCapChange=0;
         for (Team t1 : listOfTeams) {
             if (listOfTeamsInPot.size()!=9){
                 if (!listOfTeamsInPot.contains(t1)) {
                     if (t1.isUELChampion()) {
-                        listOfTeamsInPot.add(t1);
+                        if (t1.isCountryChampion()&&t1.getTeamCountrysRanking(t1.getTeamCountry(),listOfCountries)<=7){
+                            listOfTeamsInPot.add(t1);
+                            ++rankingCapChange;
+                        }else {
+                            listOfTeamsInPot.add(t1);
+                        }
+
                     }else if (t1.isUCLChampion()){
-                        listOfTeamsInPot.add(t1);
-                    }else if (t1.isCountryChampion()&&t1.getTeamCountrysRanking(t1.getTeamCountry(),listOfCountries)<=7){
+                        if (t1.isCountryChampion()&&t1.getTeamCountrysRanking(t1.getTeamCountry(),listOfCountries)<=7){
+                            listOfTeamsInPot.add(t1);
+                            ++rankingCapChange;
+                        }else {
+                            listOfTeamsInPot.add(t1);
+                        }
+                    }else if (t1.isCountryChampion()&&t1.getTeamCountrysRanking(t1.getTeamCountry(),listOfCountries)<=(7+rankingCapChange)){
                         listOfTeamsInPot.add(t1);
                     }
                 }
@@ -86,6 +98,22 @@ public class Pot {
                         listOfTeamsInPot.add(temp);
                     }
                 }
+
+        }
+        listOfTeamsInPot.sort(tcc);
+
+    }
+
+    public void setRemainingPotsFixed(ArrayList<Team> listOfTeams, ArrayList<Team> allTeams){
+        TeamCoefficientComparator tcc = new TeamCoefficientComparator();
+        Random rand = new Random();
+        int i =0;
+        while (listOfTeamsInPot.size()!=27){
+            for (Team t1: allTeams) {
+                if (!listOfTeams.contains(t1)) {
+                    listOfTeamsInPot.add(t1);
+                }
+            }
 
         }
         listOfTeamsInPot.sort(tcc);

@@ -2,6 +2,7 @@ package main;
 
 import backend.basics.Country;
 import backend.basics.Matchday;
+import backend.basics.Matchup;
 import backend.basics.Team;
 import backend.draw.OfficialDraw;
 import backend.potsDraw.FullDraw;
@@ -16,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
 
         HashMap<String, Country> countriesList = readCountriesFromCsv("resources/CountriesRanking.csv");
-        ArrayList<Team> teamsList = readTeamsFromCsv("resources/ClubsRanking.csv");
+        ArrayList<Team> teamsList = readTeamsFromCsv("resources/testing.csv");
 
         Pot pot1 = new Pot(1);
         Pot pot2 = new Pot(2);
@@ -38,7 +39,7 @@ public class Main {
 //        }
 
         FullDraw fd1 = new FullDraw();
-        fd1.getFullDrawInPots(teamsList,countriesList);
+        fd1.getFullDrawInPotsFixed(teamsList,countriesList);
 //        int k = 1;
 //        for (Pot p1: fd1.getListOfPotsInFullDraw()) {
 //            System.out.println("Koszyk numer " + k);
@@ -92,10 +93,43 @@ public class Main {
 //
 //        }
         OfficialDraw od1 = new OfficialDraw();
-        od1.doTheDraw(fd1);
-        for (Matchday matchday: od1.getListOfMatchdays()) {
-            System.out.println(matchday);
+//        od1.doTheDraw(fd1);
+//        for (Matchday matchday: od1.getListOfMatchdays()) {
+//            System.out.println(matchday);
+//
+//        }
+        ArrayList<Matchday> matchdays1 = OfficialDraw.drawTwoMatchdaysBetweenTwoDifferentPots(fd1.getCertainPot(1),fd1.getCertainPot(2));
+        ArrayList<Matchday> matchdays2 = OfficialDraw.drawTwoMatchdaysBetweenTwoDifferentPots(fd1.getCertainPot(3),fd1.getCertainPot(1));
+        ArrayList<Matchday> matchdays3 = OfficialDraw.drawTwoMatchdaysBetweenTwoDifferentPots(fd1.getCertainPot(1),fd1.getCertainPot(4));
+        ArrayList<Matchday> matchdays4 = OfficialDraw.drawTwoMatchdaysBetweenTwoDifferentPots(fd1.getCertainPot(2),fd1.getCertainPot(3));
+        ArrayList<Matchday> matchdays5 = OfficialDraw.drawTwoMatchdaysBetweenTwoDifferentPots(fd1.getCertainPot(2),fd1.getCertainPot(4));
+        ArrayList<Matchday> matchdays6 = OfficialDraw.drawTwoMatchdaysBetweenTwoDifferentPots(fd1.getCertainPot(3),fd1.getCertainPot(4));
+        ArrayList<Matchday> matchdays = new ArrayList<>();
+        Matchday matchdayPot1 = OfficialDraw.drawMatchupsInsideOnePot(fd1.getCertainPot(1));
+        Matchday matchdayPot2 = OfficialDraw.drawMatchupsInsideOnePot(fd1.getCertainPot(2));
+        Matchday matchdayPot3 = OfficialDraw.drawMatchupsInsideOnePot(fd1.getCertainPot(3));
+        Matchday matchdayPot4 = OfficialDraw.drawMatchupsInsideOnePot(fd1.getCertainPot(4));
+        for (int i2=0;i2<2;++i2){
+            matchdays.add(matchdays1.get(i2));
+            matchdays.add(matchdays2.get(i2));
+            matchdays.add(matchdays3.get(i2));
+            matchdays.add(matchdays4.get(i2));
+            matchdays.add(matchdays5.get(i2));
+            matchdays.add(matchdays6.get(i2));
+        }
+        matchdays.add(matchdayPot1);
+        matchdays.add(matchdayPot2);
+        matchdays.add(matchdayPot3);
+        matchdays.add(matchdayPot4);
+        int k=1;
+        for (Matchday matchday: matchdays) {
+            for (Matchup matchup: matchday.getMatchupsOnMatchday()) {
+                if (matchup.getHomeTeam().getTeamName().equals("Arsenal FC")||matchup.getAwayTeam().getTeamName().equals("Arsenal FC"))
+                System.out.println(k+". " + matchup);
+                ++k;
+            }
 
         }
+
     }
 }
