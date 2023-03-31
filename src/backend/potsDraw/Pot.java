@@ -1,4 +1,4 @@
-package backend.draw;
+package backend.potsDraw;
 
 import backend.basics.Country;
 import backend.basics.Team;
@@ -43,6 +43,10 @@ public class Pot {
 
     public void addTeamToPot(Team team){
         this.listOfTeamsInPot.add(team);
+    }
+
+    public Team getCertainTeamFromPot(int i){
+        return listOfTeamsInPot.get(i-1);
     }
 
     public void setFirstPotOfTeams(ArrayList<Team> listOfTeams, HashMap<String, Country> listOfCountries){
