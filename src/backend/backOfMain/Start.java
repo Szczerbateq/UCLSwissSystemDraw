@@ -19,7 +19,7 @@ public class Start {
         ArrayList<Team> teamsList = readTeamsFromCsv(teamsSource);
 
         FullDraw fd1 = new FullDraw();
-        fd1.getFullDrawInPotsFixed(teamsList, countriesList);
+        fd1.getFullDrawInPots(teamsList, countriesList);
 
         Matchday matchday1 = new Matchday(1);
         Matchday matchday2 = new Matchday(2);

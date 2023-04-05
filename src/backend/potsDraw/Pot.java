@@ -79,12 +79,38 @@ public class Pot {
         listOfTeamsInPot.sort(tcc);
     }
 
+    public static ArrayList<Team> correctCountryCoefficients(ArrayList<Team> listOfTeams, HashMap<String, Country> listOfCountries){
+        for (Team t1: listOfTeams) {
+            int numberOfTeams=5;
+            if (listOfCountries.get(t1.getTeamCountry()).getCountryRankingPosition()<=4){
+//                numberOfTeams=5;
+//            }else if(listOfCountries.get(t1.getTeamCountry()).getCountryRankingPosition()<=6){
+//                numberOfTeams=5;
+//            }else if(listOfCountries.get(t1.getTeamCountry()).getCountryRankingPosition()<=15){
+//                numberOfTeams=5;
+            }else if(listOfCountries.get(t1.getTeamCountry())==listOfCountries.get("Liechtenstein")){
+                continue;
+            }
+//            else if(listOfCountries.get(t1.getTeamCountry()).getCountryRankingPosition()<=50){
+//                numberOfTeams=5;
+//            }
+//            else {
+//                numberOfTeams=5;
+//            }
+            if (listOfCountries.get(t1.getTeamCountry()).getCountryCoefficient()/numberOfTeams>t1.getTeamCoefficient()){
+                t1.setTeamCoefficient(listOfCountries.get(t1.getTeamCountry()).getCountryCoefficient()/numberOfTeams);
+            }
+
+        }
+        return listOfTeams;
+    }
+
+
     public void setRemainingPots(ArrayList<Team> listOfTeams, HashMap<String, Country> listOfCountries){
         TeamCoefficientComparator tcc = new TeamCoefficientComparator();
         Random rand = new Random();
-        int i =0;
+        correctCountryCoefficients(listOfTeams, listOfCountries);
         while (listOfTeamsInPot.size()!=27){
-            i++;
                 int randomInt = rand.nextInt(listOfTeams.size());
                 Team temp = listOfTeams.get(randomInt);
                 if (!listOfTeamsInPot.contains(listOfTeams.get(randomInt))) {
@@ -106,8 +132,6 @@ public class Pot {
 
     public void setRemainingPotsFixed(ArrayList<Team> listOfTeams, ArrayList<Team> allTeams){
         TeamCoefficientComparator tcc = new TeamCoefficientComparator();
-        Random rand = new Random();
-        int i =0;
         while (listOfTeamsInPot.size()!=27){
             for (Team t1: allTeams) {
                 if (!listOfTeams.contains(t1)) {

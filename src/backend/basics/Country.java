@@ -82,8 +82,5 @@ public class Country {
                 '}';
     }
 
-    public static void main(String[] args) {
-        HashMap<String, Country> countriesList = readCountriesFromCsv("resources/CountriesRanking.csv");
 
-    }
 }

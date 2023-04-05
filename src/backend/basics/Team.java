@@ -130,6 +130,7 @@ public class Team {
 
 
 
+
     @Override
     public String toString() {
         return "Team{" +
@@ -143,10 +144,5 @@ public class Team {
     }
 
 
-    public static void main(String[] args) {
-        ArrayList<Team> test1 = readTeamsFromCsv("resources/ClubsRanking.csv");
-        for (Team t: test1) {
-            System.out.println(t);
-        }
-    }
+
 }
