@@ -58,7 +58,7 @@ public class FullDraw {
     public void getFullDrawInPotsFixed(ArrayList<Team> listOfTeams, HashMap<String, Country> listOfCountries) {
         Pot pot1 = new Pot(1);
         pot1.setFirstPotOfTeams(listOfTeams, listOfCountries);
-        Pot potX = new Pot(100);
+        Pot potX = new Pot(1000);
         potX.setRemainingPotsFixed(pot1.getListOfTeamsInPot(), listOfTeams);
         Pot pot2 = new Pot(2);
         Pot pot3 = new Pot(3);
@@ -70,6 +70,8 @@ public class FullDraw {
                 pot3.addTeamToPot(potX.getListOfTeamsInPot().get(i));
             } else if (i < 27) {
                 pot4.addTeamToPot(potX.getListOfTeamsInPot().get(i));
+            }else {
+                break;
             }
         }
         ArrayList<Pot> finalDraw = new ArrayList<>();
