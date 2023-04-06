@@ -14,7 +14,7 @@ import static backend.basics.Country.readCountriesFromCsv;
 import static backend.basics.Team.readTeamsFromCsv;
 
 public class Start {
-    static public void getDraw(String countriesSource, String teamsSource){
+    static public void getDraw(String countriesSource, String teamsSource, String team){
         HashMap<String, Country> countriesList = readCountriesFromCsv(countriesSource);
         ArrayList<Team> teamsList = readTeamsFromCsv(teamsSource);
 
@@ -56,9 +56,15 @@ public class Start {
         int k = 1;
         for (Matchday matchday : matchdays) {
             for (Matchup matchup : matchday.getMatchupsOnMatchday()) {
-                if (matchup.getHomeTeam().getTeamName().equals("RC Lens") || matchup.getAwayTeam().getTeamName().equals("RC Lens")) {
+                if (matchup.getHomeTeam().getTeamName().equals(team) || matchup.getAwayTeam().getTeamName().equals(team)) {
                     System.out.println(k + ". " + matchup);
                     ++k;
+//                    if (matchup.getHomeTeam().getTeamName().equals(team)){
+//                        System.out.println(matchup.getAwayTeam().getTeamName());
+//                    }else{
+//                        System.out.println(matchup.getHomeTeam().getTeamName());
+//                    }
+
                 }
             }
         }
