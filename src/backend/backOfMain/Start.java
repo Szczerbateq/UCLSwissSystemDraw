@@ -14,7 +14,7 @@ import static backend.basics.Country.readCountriesFromCsv;
 import static backend.basics.Team.readTeamsFromCsv;
 
 public class Start {
-    static public void getDraw(String countriesSource, String teamsSource, String team){
+    static public void getDrawForTeam(String countriesSource, String teamsSource, String team){
         HashMap<String, Country> countriesList = readCountriesFromCsv(countriesSource);
         ArrayList<Team> teamsList = readTeamsFromCsv(teamsSource);
 
@@ -69,6 +69,13 @@ public class Start {
             }
         }
     }
+
+    public static void getMultipleDrawsForTeam(String countriesSource, String teamsSource, String team, int numberOfDraws){
+        for (int i = 0 ; i<numberOfDraws; i++){
+            getDrawForTeam(countriesSource,teamsSource,team);
+        }
+    }
+
 
 
 }

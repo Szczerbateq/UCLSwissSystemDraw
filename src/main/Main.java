@@ -7,7 +7,7 @@ public class Main {
 //        for (int i = 0 ; i < 100 ; ++i){
 //            Start.getDraw("resources/CountriesRanking.csv","resources/testing.csv", "FC Barcelona");
 //        }
-        Start.getDraw("resources/CountriesRanking.csv","resources/testing.csv", "FC Barcelona");
+        Start.getMultipleDrawsForTeam("resources/CountriesRanking.csv","resources/testing.csv", "FC Barcelona",2);
 
     }
 }
