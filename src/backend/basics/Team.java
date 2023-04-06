@@ -112,10 +112,12 @@ public class Team {
         try (BufferedReader br = Files.newBufferedReader(filePath)){
             String line = br.readLine();
             line = line.replace(",",".");
+            line = line.replace("\uFEFF","");
 
             while (line!=null){
 
                 line = line.replace(",",".");
+                line = line.replace("\uFEFF","");
                 String[] elements = line.split(";");
                 Team team = addTeamFromLineInFile(elements);
                 countries.add(team);

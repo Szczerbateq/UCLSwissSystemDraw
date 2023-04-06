@@ -7,6 +7,10 @@ import backend.basics.Team;
 import backend.draw.OfficialDraw;
 import backend.potsDraw.FullDraw;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,7 +18,7 @@ import static backend.basics.Country.readCountriesFromCsv;
 import static backend.basics.Team.readTeamsFromCsv;
 
 public class Start {
-    static public void getDrawForTeam(String countriesSource, String teamsSource, String team){
+    static public ArrayList<Matchday> getDrawForTeam(String countriesSource, String teamsSource, String team){
         HashMap<String, Country> countriesList = readCountriesFromCsv(countriesSource);
         ArrayList<Team> teamsList = readTeamsFromCsv(teamsSource);
 
@@ -53,26 +57,51 @@ public class Start {
         matchdays.add(matchdayPot2);
         matchdays.add(matchdayPot3);
         matchdays.add(matchdayPot4);
-        int k = 1;
-        for (Matchday matchday : matchdays) {
-            for (Matchup matchup : matchday.getMatchupsOnMatchday()) {
-                if (matchup.getHomeTeam().getTeamName().equals(team) || matchup.getAwayTeam().getTeamName().equals(team)) {
-                    System.out.println(k + ". " + matchup);
-                    ++k;
-//                    if (matchup.getHomeTeam().getTeamName().equals(team)){
-//                        System.out.println(matchup.getAwayTeam().getTeamName());
-//                    }else{
-//                        System.out.println(matchup.getHomeTeam().getTeamName());
-//                    }
+        return matchdays;
 
+    }
+
+    static public void getMultipleListsOfOpponentsForTeamToTXT(String countriesSource, String teamsSource, String team, int numberOfDraws, String fileName){
+        for (int i = 0 ; i< numberOfDraws ; ++i){
+            ArrayList<Matchday> matchdays = getDrawForTeam(countriesSource,teamsSource,team);
+            for (Matchday matchday : matchdays) {
+                for (Matchup matchup : matchday.getMatchupsOnMatchday()) {
+                    if (matchup.getHomeTeam().getTeamName().equals(team) || matchup.getAwayTeam().getTeamName().equals(team)) {
+//                    System.out.println(k + ". " + matchup);
+//                    ++k;
+                        File f = new File("resources/"+fileName+".txt");
+                        try {
+                            BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
+                            if (matchup.getHomeTeam().getTeamName().equals(team)){
+                                bw.append(matchup.getAwayTeam().getTeamName()).append(";").append(matchup.getAwayTeam().getTeamCountry()).append(String.valueOf('\n'));
+                            }else{
+                                bw.append(matchup.getHomeTeam().getTeamName()).append(";").append(matchup.getHomeTeam().getTeamCountry()).append(String.valueOf('\n'));
+                            }
+                            bw.close();
+                        } catch (IOException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
                 }
             }
         }
     }
 
-    public static void getMultipleDrawsForTeam(String countriesSource, String teamsSource, String team, int numberOfDraws){
+
+
+
+
+
+    public static void getMultipleMatchupsForTeam(String countriesSource, String teamsSource, String team, int numberOfDraws){
         for (int i = 0 ; i<numberOfDraws; i++){
-            getDrawForTeam(countriesSource,teamsSource,team);
+            ArrayList<Matchday> matchdays = getDrawForTeam(countriesSource,teamsSource,team);
+            for (Matchday matchday:matchdays) {
+                for (Matchup matchup:matchday.getMatchupsOnMatchday() ) {
+                    if (matchup.getHomeTeam().getTeamName().equals(team) || matchup.getAwayTeam().getTeamName().equals(team)) {
+                        System.out.println(matchup);
+                    }
+                }
+            }
         }
     }
 
