@@ -1,56 +1,56 @@
-﻿TEST;0;56
-England;106,641;1
-Spain;96,141;2
-Italy;76,902;3
-Germany;75,213;4
-France;60,081;5
-Portugal;53,382;6
-Netherlands;49,3;7
-Austria;38,85;8
-Scotland;36,9;9
-Russia;34,482;10
-Serbia;33,375;11
-Ukraine;31,8;12
-Belgium;30,6;13
-Switzerland;29,675;14
-Greece;28,2;15
-Czech Republic;27,8;16
-Norway;27,25;17
-Denmark;27,175;18
-Croatia;27,15;19
-Turkey;27,1;20
-Cyprus;26,375;21
-Israel;24,375;22
-Sweden;22,875;23
-Bulgaria;19,5;24
-Romania;17,15;25
-Azerbaijan;17;26
-Hungary;16,375;27
-Poland;15,875;28
-Kazakhstan;15,75;29
-Slovakia;15,625;30
-Slovenia;15;31
-Belarus;12,5;32
-Moldova;11,25;33
-Lithuania;10;34
-Bosnia-Herzegovina;9,125;35
-Finland;8,875;36
-Luxembourg;8,75;37
-Latvia;8,625;38
-Kosovo;8,166;39
-Ireland;8,125;40
-Armenia;8,125;41
-Northern Ireland;8,083;42
-Albania;8;43
-Faroe Islands;7,25;44
-Estonia;7,041;45
-Malta;7;46
-Georgia;7;47
-North Macedonia;7;48
-Liechtenstein;6,5;49
-Wales;5,5;50
-Gibraltar;5,416;51
-Iceland;5,375;52
-Montenegro;4,875;53
-Andorra;4,665;54
-San Marino;1,332;55
+﻿TEST;0;0
+England;106.427;1
+Spain;90.855;2
+Germany;81.731;3
+Italy;77.211;4
+France;60.997;5
+Netherlands;58.900;6
+Portugal;55.882;7
+Belgium;41.400;8
+Scotland;36.400;9
+Austria;34.000;10
+Serbia;32.375;11
+Turkey;32.100;12
+Switzerland;30.175;13
+Ukraine;29.500;14
+Czech Republic;29.050;15
+Norway;29.000;16
+Denmark;27.825;17
+Russia;26.215;18
+Croatia;25.400;19
+Greece;25.225;20
+Israel;25.000;21
+Cyprus;24.475;22
+Sweden;23.750;23
+Hungary;20.625;24
+Romania;20.500;25
+Poland;20.250;26
+Bulgaria;20.000;27
+Slovakia;19.750;28
+Azerbaijan;16.625;29
+Kazakhstan;12.625;30
+Slovenia;12.500;31
+Moldova;12.250;32
+Kosovo;11.041;33
+Liechtenstein;11.000;34
+Latvia;10.625;35
+Ireland;10.375;36
+Finland;10.250;37
+Lithuania;10.000;38
+Armenia;9.875;39
+Belarus;9.875;40
+Bosnia-Herzegovina;9.750;41
+Luxembourg;9.000;42
+Faroe Islands;8.750;43
+Northern Ireland;8.583;44
+Malta;8.250;45
+Georgia;8.000;46
+Estonia;7.582;47
+Iceland;7.250;48
+Albania;6.250;49
+Wales;6.166;50
+Gibraltar;5.791;51
+North Macedonia;5.500;52
+Andorra;5.165;53
+Montenegro;4.750;54
+San Marino;1.999;55
